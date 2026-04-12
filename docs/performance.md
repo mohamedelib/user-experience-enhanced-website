@@ -7,11 +7,11 @@ Zo zegt Léonie Watson
 
 > Accessibility == Performance
 
-Binnen FDND is het de laatste van de Vier Grote Principes waarmee we _RAPPE_ websites maken:
+Binnen FDND is Performance een van de vier principes waarmee we _RAPPE_ websites maken:
 
 - Responsive
-- Accessible
-- Performant
+- Accessibility
+- Performance
 - Progressively Enhanced
 
 Uiteindelijk heeft het allemaal met elkaar te maken: _Goede Websites Maken_.
