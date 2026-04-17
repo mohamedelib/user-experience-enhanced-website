@@ -69,18 +69,15 @@
 {% assign student = students | find: "title", studentTitle %}
   {% comment %} profile {% endcomment %}
 <main>
-
-<picture>
-   <source type="image/avif" srcset="https://fdnd-agency.directus.app/assets/{{ student.profile_picture }}?format=avif">
-   <source type="image/webp" srcset="https://fdnd-agency.directus.app/assets/{{ student.profile_picture }}?format=webp">
-  <img src="https://fdnd-agency.directus.app/assets/{{ student.profile_picture }}" width="300" height="300" alt="{{ student.title }}">
-</picture>
-
   <section class="profile">
   <a href="/Talentaward"> < Terug naar genomineerde</a>
   <h1> Talent Award Genomineerde 2026 </h1>
   <h2> {{ student.title }} </h2>
+  <picture>
+   <source type="image/avif" srcset="https://fdnd-agency.directus.app/assets/{{ student.profile_picture }}?format=avif">
+   <source type="image/webp" srcset="https://fdnd-agency.directus.app/assets/{{ student.profile_picture }}?format=webp">
   <img src="https://fdnd-agency.directus.app/assets/{{ student.profile_picture }}" width="300" height="300" alt="{{ student.title }}">
+</picture>
  <div class="dividerr">
   <dl>
 

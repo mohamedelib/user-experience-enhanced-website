@@ -116,10 +116,12 @@
     <div class="kaartje">
     <a href="/Talentaward/student/{{ student.title}}">
       
-      <img
-        src="{% if student.profile_picture %}https://fdnd-agency.directus.app/assets/{{ student.profile_picture }}{% else %}/assets/prop.jpg{% endif %}"
-        alt="{{student.title}}"
-      >
+      <picture>
+  <source type="image/avif" srcset="{% if student.profile_picture %}https://fdnd-agency.directus.app/assets/{{ student.profile_picture }}?format=avif{% else %}/assets/prop.jpg{% endif %}">
+  <source type="image/webp" srcset="{% if student.profile_picture %}https://fdnd-agency.directus.app/assets/{{ student.profile_picture }}?format=webp{% else %}/assets/prop.jpg{% endif %}">
+  <img src="{% if student.profile_picture %}https://fdnd-agency.directus.app/assets/{{ student.profile_picture }}{% else %}/assets/prop.jpg{% endif %}"
+       width="300" height="300" alt="{{ student.title }}">
+</picture>
     </a>
    {% if student.education_variant %}
   <p class="labell">{{ student.education_variant }}</p>
