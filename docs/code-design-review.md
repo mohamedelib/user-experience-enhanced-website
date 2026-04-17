@@ -1,30 +1,27 @@
-# Enhanced Website
+# Server-Side Website  
 
+## Code/Design Review  
 
-## Code/Design Review
-Deze week zijn jullie aan de slag gegaan met verschillende performance technieken en jullie hebben Perceived Performance toegepast als enhancement van de client-side POST interactie.
+Deze week hebben jullie gewerkt aan een prototype in Node.js met data uit Directus voor een nieuwe opdrachtgever. Je hebt daarbij een installatie opgezet met Node.js, Express en Liquid en bent aan de hand van een interface inventory gaan prototypen.  
 
 ### Aanpak  
 
-Vandaag werken we in groepjes aan een code review met peers die ongeveer even ver zijn als dat jij bent. Binnen je groepje bepaal je welke vragen jullie hebben en waar je graag feedback op zou willen ontvangen.  
+Vandaag werken we in groepjes aan een code review met peers die ongeveer even ver zijn als dat jij bent. Dit semester werk je meer zelfsturend, en dat geldt ook voor deze code-review. Binnen je groepje bepaal je welke vragen jullie hebben en waar je graag feedback op zou willen ontvangen.  
 
-We gaan kijken hoe ver jullie zijn met de DoD's:
-- [ ] Je hebt verschillende performance technieken toegepast
-- [ ] Je hebt met client-side scripting de user experience van je website verbeterd
-
-## 1. Code Review (op niveau)  
+## Code Review (op niveau)  
 
 ### Bepaal bij welke stap je bent  
 
 Bekijk onderstaande vier stappen en bepaal tot welke stap jij bent gekomen:  
 
-1. Je hebt **een POST** die de data opslaat server-side. De pagina refresht wanneer dit is gelukt.   
-1. Je hebt **een client-side fetch** op jouw POST formulier gemaakt, als alles goed gaat in de browser wordt de pagina niet refresht.
-3. Je hebt **een loading en succes state** gemaakt als enhancement.  
-5. Je hebt ook al **andere client-side enhancements** toegepast. 
+1. **Je haalt data op uit Directus** met een server-side `fetch`.  
+2. **Je toont de data in een Liquid-template** (bijvoorbeeld met een `for`-loop).  
+3. **Je hebt meerdere GET-routes aangemaakt** in `server.js`.  
+4. **Je bent bezig met complexere functionaliteiten**, zoals werken met partials, `Date`-functies of het combineren van meerdere `fetch`-requests. Daarnaast heb je mogelijk al veel CSS geschreven.  
 
-Zoek maximaal drie andere studenten die tot dezelfde stap zijn gekomen. Ga samen aan een tafel zitten.
+_Bijvoorbeeld: je hebt data uit Directus opgehaald en op de homepagina weergegeven, maar je hebt nog geen extra pagina gemaakt en vond het lastig om de data in `index.liquid` correct te tonen. In dat geval ben je tot stap **2** gekomen en hoor je bij **team 2**._
 
+_Zoek dan maximaal drie andere studenten die ook in team 2 zitten en ga samen aan een tafel zitten._
 
 ### Code Review in het Team  
 
@@ -40,31 +37,3 @@ Vervolgens ga je met je team onderzoeken hoe je antwoorden kunt vinden op deze v
 - Een docent inschakelen voor een code-review.  
 
 Zorg ervoor dat je aan het einde van de ochtend je vragen hebt beantwoord en waardevolle feedback hebt verzameld, zodat je volgende week verder kunt.  
-
-## 2. Code Review Performance technieken
-
-### Review voorbereiden
-
-Je hebt deze week meerdere performance technieken toegepast op de leertaak. Zoals het voorkomen layout shift, responsive images of een skeleton screen. Daar ga je vandaag feedback op ~~krijgen~~vragen. 
-
-Maak een issue voor de review en beschrijf de performance technieken die jij al hebt toegepast in de leertaak. Geef een uitleg hoe jij deze technieken hebt toegepast, voeg code snippets toe en link naar code. Zorg dat je website live staat anders kan je code niet getest worden.
-
-Tag vervolgens twee medestudenten _uit de andere squad_ in de issue van wie jij feedback wilt ontvangen. 
-
-
-### Review geven
-
-Ben je getagged? Dan geef je een code-review op de performance technieken van jouw medestudent. Doe dit samen met de andere student die getagged is, zodat je kan overleggen.
-
-Lees de beschrijving goed door en test de website zoals je hebt geleerd in de opdracht [Break the web](https://github.com/fdnd-task/user-experience-enhanced-website/blob/main/docs/performance.md) en de deeltaak [Perfromance Audit](https://github.com/fdnd-task/performance-audit) 
-
-Bekijk en bespreek de code die bij de performance technieken hoort. 
-
-Schrijf hoe de test is gegaan, geef feedback wat er goed gaat en geef tips als er iets nog niet goed gaat. Voeg zo nodig bronnen of voorbeelden toe.
-
-
-### Review bespreken
-
-Bespreek na de review de feedback met de studenten. Is de feedback die geschreven is duidelijk? Hoe hebben ze getest en wat voor dingen hebben ze in je code gezien?
-
-

@@ -1,0 +1,170 @@
+{% render 'partials/head.liquid', title: 'Student' %}
+
+<header>
+  <nav class="first-header">
+    <ul>
+      <li>
+        <a href="">{{ extraData.homepageHeader.headeritem1 }}</a>
+      </li>
+      <li>
+        <a href="">{{ extraData.homepageHeader.headeritem2 }}</a>
+      </li>
+      <li>
+        <a href="">{{ extraData.homepageHeader.headeritem3 }}</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+<header>
+  <nav class="second-header">
+    <img src="/assets/logo.svg" alt="Associate Degree Platform" width="200" height="50">
+    <ul>
+      <li>
+        <a href="">
+          {{ extraData.homepageHeader.scndheaderitem1 }}
+        </a>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a href="">
+          {{ extraData.homepageHeader.scndheaderitem2 }}
+        </a>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a href="">
+          {{ extraData.homepageHeader.scndheaderitem3 }}
+        </a>
+      </li>
+    </ul>
+    <ul>
+      <li> 
+        <a href="">
+          {{ extraData.homepageHeader.scndheaderitem4 }}
+        </a>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a href="">
+          {{ extraData.homepageHeader.scndheaderitem5 }}
+        </a>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a class="astyle ad-dag" href="">
+          {{ extraData.homepageHeader.scndheaderitem6 }}
+        </a>
+      </li>
+    </ul>
+
+    <img class="burgermenu" src="/assets/burger-bar.png" alt="menu" width="28" height="30">
+  </nav>
+</header>
+
+{% comment %} einde header {% endcomment %}
+{% assign student = students | find: "title", studentTitle %}
+  {% comment %} profile {% endcomment %}
+<main>
+
+<picture>
+   <source type="image/avif" srcset="https://fdnd-agency.directus.app/assets/{{ student.profile_picture }}?format=avif">
+   <source type="image/webp" srcset="https://fdnd-agency.directus.app/assets/{{ student.profile_picture }}?format=webp">
+  <img src="https://fdnd-agency.directus.app/assets/{{ student.profile_picture }}" width="300" height="300" alt="{{ student.title }}">
+</picture>
+
+  <section class="profile">
+  <a href="/Talentaward"> < Terug naar genomineerde</a>
+  <h1> Talent Award Genomineerde 2026 </h1>
+  <h2> {{ student.title }} </h2>
+  <img src="https://fdnd-agency.directus.app/assets/{{ student.profile_picture }}" width="300" height="300" alt="{{ student.title }}">
+ <div class="dividerr">
+  <dl>
+
+  <dt>Variant:</dt>
+  <dd> {{ student.education_variant }}</dd>
+
+  <dt>Opleiding:</dt>
+  <dd>{{  student.course }}</dd>
+</dl>
+
+<dl>
+  <dt>Instelling</dt>
+  <dd> {{ student.institution }}</dd>
+
+  <dt>Status:</dt>
+  <dd>Alumna - afgestudeerd </dd>
+
+</dl>
+ </div>
+  </section>
+  
+
+  <section class="video">
+    <h2>Kennismakingsvideo</h2>
+    <img src="/assets/video.png" >
+  </section>
+
+  <section class="info">
+    <h3> Haar Verhaal </h3>
+    <p> {{  student.body }} </p>
+
+    {% comment %} berichten achterlaten {% endcomment %}
+     </section>
+<section class="nominatiebericht">
+<h2 id="berichtenn">Berichten</h2>
+<div class="comments-list">
+    {% for comment in comments %}
+      <div class="commentcard">
+      <div class="row1">
+    <p> {{ comment.name }} </p>
+    <p> {{ comment.date_created }}  </p>
+        </div>
+    <p> {{ comment.comment }}</p>
+    <p>Nominatie #{{ comment.nomination }} </p>
+ 
+    </div>
+    {% endfor %}
+
+</div>
+
+
+<form class="comment-form" action="/Talentaward/student/{{ studentTitle }}/comment" method="POST">
+{% if success %}
+  {% render 'partials/succes.liquid', message: "Reactie geplaatst!" %}
+{% endif %}
+ {% if submitted and errors.size > 0 %}
+      {% render 'partials/error-banner.liquid', message: "Vul alle velden in." %}
+    {% endif %}
+  <label>Comment
+      <textarea placeholder="Schrijf jouw reactie..."
+        name="message"
+        {% if submitted and form.message == blank %}class="field-error"{% endif %}
+      >{{ form.message }}</textarea>
+    </label>
+    {% if submitted and form.message == blank %}
+      {% render 'partials/error.liquid', message: "Dit veld is verplicht" %}
+    {% elsif form.message != blank %}
+      {% render 'partials/succes.liquid', message: "comment ingevuld" %}
+    {% endif %}
+
+  <label>Naam
+      <input type="text" placeholder="Jouw naam"
+        name="afzender"
+        {% if submitted and form.afzender == blank %}class="field-error"{% endif %}
+        value="{{ form.afzender }}">
+    </label>
+    {% if submitted and form.afzender == blank %}
+      {% render 'partials/error.liquid', message: "Dit veld is verplicht" %}
+    {% elsif form.afzender != blank %}
+      {% render 'partials/succes.liquid', message: "name ingevuld" %}
+    {% endif %}
+  <button  type="submit">Laat je reactie achter</button>
+</form>
+
+</main>
+
+{% render 'partials/foot.liquid' %}

@@ -1,0 +1,182 @@
+{% render 'partials/head.liquid', title: 'Home' %}
+
+
+
+
+<header>
+  <nav class="first-header">
+    <ul>
+      <li><a href="">{{  extraData.homepageHeader.headeritem1 }}</a></li>
+      <li><a href="">{{  extraData.homepageHeader.headeritem2 }}</a></li>
+      <li><a href="">{{  extraData.homepageHeader.headeritem3 }}</a></li>
+    </ul>
+  </nav>
+</header>
+<header>
+  <nav class="second-header">
+    <img src="./assets/logo.svg" alt="Associate Degree Platform" width="200" height="50">
+    <ul>
+      <li>
+        <a href="">
+  {{  extraData.homepageHeader.scndheaderitem1 }}
+        </a>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a href="">
+{{  extraData.homepageHeader.scndheaderitem2 }}
+        </a>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a href="">
+{{  extraData.homepageHeader.scndheaderitem3 }}
+        </a>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a href="/talentaward">
+{{  extraData.homepageHeader.scndheaderitem4 }}
+        </a>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a href="">
+{{  extraData.homepageHeader.scndheaderitem5 }}
+        </a>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a class="astyle ad-dag"href="">
+{{  extraData.homepageHeader.scndheaderitem6 }}
+        </a>
+      </li>
+    </ul>
+    
+    <img class="burgermenu" src="./assets/burger-bar.png" alt="menu" width="28" height="30">
+  </nav>
+</header>
+
+{% comment %} Main {% endcomment %}
+<main>
+  <section class="banner">
+    <h1>{{ extraData.homepageHeader.title }}</h1>
+    <p>
+      {{ extraData.homepageHeader.text }}
+    </p>
+    <span class="verdeling">
+      <a class="overons astyle" href="">Meer over Ad's</a>
+      <a class="ad-dag astyle" href="">Kom naar de AD-dag </a>
+      </span>
+      <img class="bannerfoto" src="./assets/bannerpic.jpg" alt="banner" width="300" height="210">
+  </section>
+
+  <p class="divider">het laatste nieuws</p>
+  <section class="kaarten">
+    <article class="card">
+      <img src="./assets/ad-dag.jpg" alt="Ad Dag">
+      <div class="cardinfo">
+        <h2> {{ extraData.homepageHeader.nieuwsitem1 }}</h2>
+        <p>{{ extraData.homepageHeader.nieuwsdiscription1 }}</p>
+        <a class="astyle" href="">Meer informatie</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="./assets/ad-dag.jpg" alt="Ad Dag">
+      <div class="cardinfo">
+        <h2>{{ extraData.homepageHeader.nieuwsitem2 }}</h2>
+        <p>{{ extraData.homepageHeader.nieuwsdiscription2 }}</p>
+        <a class="astyle" href="">Meer informatie</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="./assets/ad-dag.jpg" alt="Ad Dag">
+      <div class="cardinfo">
+        <h2>{{ extraData.homepageHeader.nieuwsitem3 }}</h2>
+        <p>{{ extraData.homepageHeader.nieuwsdiscription3 }}</p>
+        <a class="astyle" href="">Meer informatie</a>
+      </div>
+    </article>
+  </section>
+  <section class="information">
+    <img src="./assets/logo_klein.svg" alt="Associate Degree logo">
+    <h2>Wat zijn Associate degrees en hoe sluit het aan bij jou wensen?</h2>
+    <p>
+      Associate degrees zijn tweejarige hbo-opleidingen die sterk praktijkgericht zijn en direct aansluiten op de
+      arbeidsmarkt. Ze combineren werken en leren en zijn bedoeld voor studenten die zich willen ontwikkelen op
+      hbo-niveau, zonder direct een vierjarige bachelor te volgen. De opleidingen worden samen met het werkveld
+      vormgegeven en spelen in op actuele beroepsvragen. Hierdoor doe je relevante kennis en vaardigheden op die je
+      meteen kunt toepassen in de praktijk. Een Associate degree biedt daarnaast flexibiliteit: je behaalt een
+      zelfstandig diploma en kunt, als je dat wilt, doorstromen naar een bacheloropleiding.
+    </p>
+    <a class="astyle ad-dag" href="">Meer info over Ad's'</a>
+  </section>
+</div>
+  <section class="info-cards">
+    <div class="padd">
+      <span class="tekstt">
+    <h2>Ontdek het Ad‑onderwijs</h2>
+    <p>
+      Leer alles over Associate degrees, doorstroommogelijkheden en netwerkevenementen. Blijf op de hoogte van
+      Ad‑opleidingen en activiteiten binnen het overlegplatform.
+    </p>
+      </span>
+    <article class="mini-cards">
+      <h3>Doorstroom Ad</h3>
+      <p style="
+    margin-bottom: 30px;
+">
+        Met een Associate degree stroom je door naar het derde jaar van een bachelor. Zo combineer je praktijk met een
+        diploma.
+      </p>
+      <a class="astyle" href="">Meer over Doorstroom Ad's'</a>
+    </article>
+
+    <article class="mini-cards">
+      <h3>Ad-dag</h3>
+      <p style="
+    margin-bottom: 30px;
+">
+        De jaarlijkse Ad‑dag brengt studenten, docenten en werkveldpartners samen. Tijdens workshops staat kennisdeling en netwerken centraal.
+      </p>
+      <a class="astyle" href="">Meer over Ad-Dag </a>
+    </article>
+
+    <article class="mini-cards">
+      <h3>Ad Talentaward</h3>
+      <p style="
+    margin-bottom: 30px;
+">
+        Jaarlijks wordt door het Overlegplatform de Ad Talent Award uitgereikt, waarmee 2 Associate degree-talenten verkozen worden.
+      </p>
+      <a class="astyle" href="">Meer over Talentaward </a>
+    </article>
+    </div>
+  </section>
+<div class="padd">
+  <section class="waaromkies">
+    <img src="./assets/logo_klein.svg" alt="Associate Degree logo">
+    <h2>Waarom kiezen voor een Associate degree?</h2>
+    <p>
+      Een Associate degree combineert praktijkgericht onderwijs met doorstroommogelijkheden, zodat je snel ervaring
+      opdoet én een diploma haalt.
+    </p>
+
+    <ul>
+      <li>Praktijkgericht leren en direct vaardigheden toepassen</li>
+      <li>Korte studieduur van 2 jaar</li>
+      <li>Doorstromen naar een bacheloropleiding mogelijk</li>
+    </ul>
+    <a class="astyle" href="">Meer over </a>
+  </section>
+
+</main>
+
+{% render 'partials/foot.liquid' %}

@@ -1,0 +1,150 @@
+{% render 'partials/head.liquid', title: 'Home' %}
+<header>
+  <nav class="first-header">
+    <ul>
+      <li>
+        <a href="">{{ extraData.homepageHeader.headeritem1 }}</a>
+      </li>
+      <li>
+        <a href="">{{ extraData.homepageHeader.headeritem2 }}</a>
+      </li>
+      <li>
+        <a href="">{{ extraData.homepageHeader.headeritem3 }}</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+<header>
+  <nav class="second-header">
+    <img src="./assets/logo.svg" alt="Associate Degree Platform" width="200" height="50">
+    <ul>
+      <li>
+        <a href="">
+          {{ extraData.homepageHeader.scndheaderitem1 }}
+        </a>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a href="">
+          {{ extraData.homepageHeader.scndheaderitem2 }}
+        </a>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a href="">
+          {{ extraData.homepageHeader.scndheaderitem3 }}
+        </a>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a href="/Talentaward">
+          {{ extraData.homepageHeader.scndheaderitem4 }}
+        </a>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a href="">
+          {{ extraData.homepageHeader.scndheaderitem5 }}
+        </a>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a class="astyle ad-dag" href="">
+          {{ extraData.homepageHeader.scndheaderitem6 }}
+        </a>
+      </li>
+    </ul>
+
+    <img class="burgermenu" src="./assets/burger-bar.png" alt="menu" width="28" height="30">
+  </nav>
+</header>
+{% comment %} einde header {% endcomment %}
+
+{% comment %} Intro {% endcomment %}
+<section class="introductie">
+  <div class="gridd">
+  <div class="content">
+    <p>Home / Talent Award / Genomineerden 2026</p>
+    <h1>{{ talentData.introtitle }}</h1>
+    <p>{{ talentData.introtext }}</p>
+
+    <div class="verwijzing">
+      <a class="astyle ad-dag">Meer over de Ad Talent Award ></a>
+      <a href="#genomineerde"class="astyle">Bekijk de Genomineerden</a>
+    </div>
+  </div>
+
+  <img class="awardpic" src="/assets/AMC.jpg">
+</div>
+  <div class="allbox">
+  <article class="box">
+    <h3>Categorieen</h3>
+    <p>{{ talentData.categorie }}</p>
+    <p>{{ talentData.typeopleiding }}</p>
+  </article>
+  <article class="box">
+    <h3>Genomineerden</h3>
+    <p>{{ talentData.hogescholen }}</p>
+    <p>{{ talentData.genomineerde }}</p>
+  </article>
+  <article class="box uitreiking">
+    <h3>Uitreiking</h3>
+    <p>{{ talentData.uitreikingsdatum }}</p>
+    <p>{{ talentData.uitreikingsloca }}</p>
+  </article>
+</section>
+</div>
+<section class="nomidata">
+  <div class="flexer">
+  <p>6 genomineerden</p>
+  <select id="sort-select">
+    
+    <option value="">Sorteren</option>
+    <option value="az">Naam A-Z</option>
+    <option value="za">Naam Z-A</option>
+  </select>
+</div>
+  <h2 id="genomineerde">De gemonineerden voltijd</h2>
+</section>
+<section class="talentcard">
+  {% for student in students %}
+    <div class="kaartje">
+    <a href="/Talentaward/student/{{ student.title}}">
+      
+      <img
+        src="{% if student.profile_picture %}https://fdnd-agency.directus.app/assets/{{ student.profile_picture }}{% else %}/assets/prop.jpg{% endif %}"
+        alt="{{student.title}}"
+      >
+    </a>
+   {% if student.education_variant %}
+  <p class="labell">{{ student.education_variant }}</p>
+{% else %}
+  <p class="labell">Onbekend</p>
+{% endif %}
+    <span class="nodetails">
+      <p>{{ student.title }}</p>
+      <p>{{ student.institution }}</p>
+      <p>{{ student.course }}</p>
+
+      <a href="/Talentaward/student/{{ student.title}}"> Lees meer ></a>
+      </div>
+    </span>
+  {% endfor %}
+</section>
+
+<section class="ADdagrec">
+  <h2>Wees erbij op 17 april</h2>
+  <p>Kom naar de Landelijke Ad-dag bij de Hanze in Groningen en woon de uitreiking van de Ad Talent Award 2026 bij.</p>
+  <a class="astyle dag">Meld je aan voor de Ad-Dag > </a>
+</section>
+
+
+{% render 'partials/foot.liquid' %}
+
+
+
