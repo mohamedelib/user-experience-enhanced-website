@@ -79,7 +79,7 @@
     </div>
   </div>
 
-  <img class="awardpic" src="/assets/AMC.jpg">
+  <img  loading="lazy" class="awardpic" src="/assets/AMC.jpg">
 </div>
   <div class="allbox">
   <article class="box">
@@ -120,7 +120,7 @@
   <source type="image/avif" srcset="{% if student.profile_picture %}https://fdnd-agency.directus.app/assets/{{ student.profile_picture }}?format=avif{% else %}/assets/prop.jpg{% endif %}">
   <source type="image/webp" srcset="{% if student.profile_picture %}https://fdnd-agency.directus.app/assets/{{ student.profile_picture }}?format=webp{% else %}/assets/prop.jpg{% endif %}">
   <img src="{% if student.profile_picture %}https://fdnd-agency.directus.app/assets/{{ student.profile_picture }}{% else %}/assets/prop.jpg{% endif %}"
-       width="300" height="300" alt="{{ student.title }}">
+       width="300" height="300" alt="{{ student.title }}" loading="lazy">
 </picture>
     </a>
    {% if student.education_variant %}
