@@ -83,10 +83,11 @@
     <section class="Nieuwsartikelen">
       <h2>Nieuws</h2>
       <p>{{  artikel.date | date: '%d %B %Y'}}</p>
-      <article class="artikelcard"></article>
+      <article class="artikelcard">
       <h2>{{ artikel.title }}</h2>
       <p>{{  artikel.body | truncatewords: 20 }}</p>
       <a>Meer informatie</a>
+      </article>
         {% endfor %}
     </section>
   </main>
