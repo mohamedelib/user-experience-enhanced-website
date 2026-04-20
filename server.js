@@ -339,8 +339,6 @@ app.get("/nieuws", async function (request, response) {
   response.render("nieuws.liquid", {
     title: "Home",
     extraData: extraData,
-    documents: documentDataJSON.data,
-    events: eventDataJSON,
     nieuws: newsJSON.data,
   });
 });
