@@ -26,8 +26,6 @@ const awardDataJSON = await awardData.json();
 // Controleer eventueel de data in je console
 // (Let op: dit is _niet_ de console van je browser, maar van NodeJS, in je terminal)
 
-console.log(awardDataJSON);
-
 // Maak een nieuwe Express applicatie aan, waarin we de server configureren
 const app = express();
 
@@ -271,7 +269,8 @@ app.get("/Over-Ads", async function (request, response) {
   });
 });
 app.get("/Over-Ads/FAQ", async function (request, response) {
-  // Render index.liquid uit de Views map
+  // Data ophalen uit Directus
+
   // Geef hier eventueel data aan mee
   const extraData = {
     homepageHeader: {
@@ -297,10 +296,33 @@ app.get("/Over-Ads/FAQ", async function (request, response) {
 });
 
 app.get("/Nieuws", async function (request, response) {
-  // Render index.liquid uit de Views map
+  const newsresponse = await fetch(
+    "https://fdnd-agency.directus.app/items/adconnect_news",
+  );
+  const newsJSON = await newsresponse.json();
   // Geef hier eventueel data aan mee
   const extraData = {
     homepageHeader: {
+      title: "Het landelijke platform voor associate degrees",
+      text: "Ad-netwerk samen om kennis te delen, samen te werken en de kwaliteit en zichtbaarheid van Associate degrees te versterken.",
+      headeritem1: "FAQ's",
+      headeritem2: "Over ons",
+      headeritem3: "Contact",
+      scndheaderitem1: "Home",
+      scndheaderitem2: "Over Ad's",
+      scndheaderitem3: "Publicaties",
+      scndheaderitem4: "Talentaward",
+      scndheaderitem5: "Nieuws",
+      scndheaderitem6: "Kom naar Ad-dag",
+      nieuwsitem1: "Landelijke Ad Dag",
+      nieuwsitem2: "Dit is een test in principe",
+      nieuwsitem3: "Workshop Ad'ers zijn doeners!",
+      nieuwsdiscription1:
+        "Dit schooljaar vindt de landelijke Ad-dag plaats op vrijdag 17 april 2026!",
+      nieuwsdiscription2: "Hopelijk werkt dit?",
+      nieuwsdiscription3:
+        "De Ad-dag is een iniatief vanuit het Overlegplatform Associatedegrees. De vijfde...",
+
       buttons: [
         {
           url: "#bla",
@@ -319,6 +341,7 @@ app.get("/Nieuws", async function (request, response) {
     extraData: extraData,
     documents: documentDataJSON.data,
     events: eventDataJSON,
+    nieuws: newsJSON.data,
   });
 });
 
