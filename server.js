@@ -295,7 +295,7 @@ app.get("/Over-Ads/FAQ", async function (request, response) {
   });
 });
 
-app.get("/Nieuws", async function (request, response) {
+app.get("/nieuws", async function (request, response) {
   const newsresponse = await fetch(
     "https://fdnd-agency.directus.app/items/adconnect_news",
   );
