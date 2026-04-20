@@ -840,3 +840,24 @@ input[type="text"].field-error {
   border: 2px solid red;
   background: #fde8e8;
 }
+
+/* Nieuws pagina */
+.breadcrumb {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  align-items: center;
+}
+.hero {
+  padding: 20px;
+}
+.heropic {
+  max-width: 300px;
+  width: 100%;
+}
+
+.articlewrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}

@@ -79,9 +79,10 @@
         <img class="heropic" src="/assets/heronews.jpg" alt="ADconnect kantoor" fetchpriority="high">
       </picture>
     </article>
- {% for artikel in nieuws %}
-    <section class="Nieuwsartikelen">
-      <h2>Nieuws</h2>
+    <h2 style="padding-left: 20px;">Nieuws</h2>
+    <div class="articlewrap">
+    {% for artikel in nieuws %}
+    <section style="margin: 0 20px;" class="card Nieuwsartikelen">
       <p>{{  artikel.date | date: '%d %B %Y'}}</p>
       <article class="artikelcard">
       <h2>{{ artikel.title }}</h2>
@@ -89,7 +90,7 @@
       <a>Meer informatie</a>
       </article>
       </section>
-        {% endfor %}
-    
+    {% endfor %}
+    </div>
   </main>
 </body>
