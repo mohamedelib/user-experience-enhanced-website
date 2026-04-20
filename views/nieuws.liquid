@@ -80,3 +80,15 @@
         <img class="heropic" src="/assets/heronews.jpg" alt="ADconnect kantoor" fetchpriority="high">
       </picture>
     </article>
+ {% for artikel in nieuws %}
+    <section class="Nieuwsartikelen">
+      <h2>Nieuws</h2>
+      <p>{{  artikel.date | date: '%d %B %Y'}}</p>
+      <article class="artikelcard"></article>
+      <h2>{{ artikel.title }}</h2>
+      <p>{{  artikel.body | truncatewords: 20 }}</p>
+      <a>Meer informatie</a>
+        {% endfor %}
+    </section>
+  </main>
+</body>
