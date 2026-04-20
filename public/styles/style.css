@@ -850,14 +850,29 @@ input[type="text"].field-error {
 }
 .hero {
   padding: 20px;
+  background-color: var(--color-brand-subtle);
 }
 .heropic {
   max-width: 300px;
   width: 100%;
 }
 
+.Nieuwsartikelen {
+  display: flex;
+  flex-direction: column;
+  outline: 2px solid var(--color-border);
+  border-radius: 20px;
+  padding: 30px;
+  margin: 0;
+}
 .articlewrap {
   display: flex;
   flex-direction: column;
-  gap: 2em;
+  gap: 1em;
+}
+
+.artikelcard {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }

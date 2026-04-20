@@ -82,12 +82,12 @@
     <h2 style="padding-left: 20px;">Nieuws</h2>
     <div class="articlewrap">
     {% for artikel in nieuws %}
-    <section style="margin: 0 20px;" class="card Nieuwsartikelen">
-      <p>{{  artikel.date | date: '%d %B %Y'}}</p>
+    <section style="margin: 0 20px" class="Nieuwsartikelen">
       <article class="artikelcard">
+        <p style="line-height: 1.2;">{{  artikel.date | date: '%d %B %Y'}}</p>
       <h2>{{ artikel.title }}</h2>
-      <p>{{  artikel.body | truncatewords: 20 }}</p>
-      <a>Meer informatie</a>
+      <p> {{  artikel.body | truncatewords: 20 }} </p>
+      <a class="ad-dag astyle">Meer informatie</a>
       </article>
       </section>
     {% endfor %}
