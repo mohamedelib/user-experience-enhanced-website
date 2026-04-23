@@ -759,6 +759,7 @@ a.ad-dag.astyle {
 .row1 {
   display: flex;
   gap: 5px;
+  justify-content: space-between;
 }
 
 .comment-form {
