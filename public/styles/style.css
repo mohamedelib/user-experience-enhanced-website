@@ -876,3 +876,35 @@ input[type="text"].field-error {
   flex-direction: column;
   gap: 1em;
 }
+
+/* Artikel pagina */
+.nieuwsartikel {
+  max-width: 60ch;
+  margin: 0 auto;
+  padding: 0 1rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+button[data-loading] {
+  background-color: #cd3618;
+}
+
+button[data-loading]::after {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid white;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+  vertical-align: middle;
+  margin-left: 8px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
