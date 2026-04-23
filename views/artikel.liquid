@@ -1,0 +1,40 @@
+{% render 'partials/head.liquid', title:   news.title  %}
+
+
+
+{% comment %} Artikel {% endcomment %}
+<article class="">
+  <h1>{{ news.title }}</h1>
+  <h2> {{  news.description }}</h2>
+  <p> {{ news.author }}</p>
+<p> {{ news.body }}</p>
+
+</article>
+
+
+
+
+
+
+
+{% comment %} Bericht achterlaat functie {% endcomment %}
+
+<section class="nominatiebericht">
+<h2 id="berichtenn">Berichten</h2>
+<div class="comments-list">
+    {% for comment in artcomment %}
+      <div class="commentcard">
+      <div class="row1">
+    <p> {{ comment.name }} </p>
+    <p> {{ comment.date_created | date: '%d %B %Y'  }}  </p>
+    
+        </div>
+    <p> {{ comment.comment }}</p>
+ 
+    </div>
+   {% endfor %}
+
+</div>
+
+
+
