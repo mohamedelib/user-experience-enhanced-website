@@ -3,11 +3,11 @@
 
 
 {% comment %} Artikel {% endcomment %}
-<article class="">
+<article class="nieuwsartikel">
   <h1>{{ news.title }}</h1>
   <h2> {{  news.description }}</h2>
   <p> {{ news.author }}</p>
-<p> {{ news.body }}</p>
+<p> {{ news.body | html }}</p>
 
 </article>
 
@@ -35,6 +35,38 @@
    {% endfor %}
 
 </div>
+{% comment %} post form {% endcomment %}
+<form class="comment-form" action="/nieuws/{{ news.uuid }}/comment" method="POST">
+{% if success %}
+  {% render 'partials/succes.liquid', message: "Reactie geplaatst!" %}
+{% endif %}
+ {% if submitted and errors.size > 0 %}
+      {% render 'partials/error-banner.liquid', message: "Vul alle velden in." %}
+    {% endif %}
+  <label>Comment
+      <textarea placeholder="Schrijf jouw reactie..."
+        name="comment"
+        {% if submitted and form.message == blank %}class="field-error"{% endif %}
+      >{{ form.message }}</textarea>
+    </label>
+    {% if submitted and form.message == blank %}
+      {% render 'partials/error.liquid', message: "Dit veld is verplicht" %}
+    {% elsif form.message != blank %}
+      {% render 'partials/succes.liquid', message: "comment ingevuld" %}
+    {% endif %}
 
-
+  <label>Naam
+      <input type="text" placeholder="Jouw naam"
+        name="name"
+        {% if submitted and form.afzender == blank %}class="field-error"{% endif %}
+        value="{{ form.afzender }}">
+    </label>
+    {% if submitted and form.afzender == blank %}
+      {% render 'partials/error.liquid', message: "Dit veld is verplicht" %}
+    {% elsif form.afzender != blank %}
+      {% render 'partials/succes.liquid', message: "name ingevuld" %}
+    {% endif %}
+  <button  type="submit">Laat je reactie achter</button>
+</form>
+</main>
 
