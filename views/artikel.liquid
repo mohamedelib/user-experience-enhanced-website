@@ -1,5 +1,70 @@
 {% render 'partials/head.liquid', title:   news.title  %}
 
+<header>
+  <nav class="first-header">
+    <ul>
+      <li>
+        <a href="">{{ extraData.homepageHeader.headeritem1 }}</a>
+      </li>
+      <li>
+        <a href="">{{ extraData.homepageHeader.headeritem2 }}</a>
+      </li>
+      <li>
+        <a href="">{{ extraData.homepageHeader.headeritem3 }}</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+<header>
+  <nav class="second-header">
+    <img src="/assets/logo.svg" alt="Associate Degree Platform" width="200" height="50">
+    <ul>
+      <li>
+        <a href="">
+          {{ extraData.homepageHeader.scndheaderitem1 }}
+        </a>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a href="">
+          {{ extraData.homepageHeader.scndheaderitem2 }}
+        </a>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a href="">
+          {{ extraData.homepageHeader.scndheaderitem3 }}
+        </a>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a href="/talentaward">
+          {{ extraData.homepageHeader.scndheaderitem4 }}
+        </a>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a href="/nieuws">
+          {{ extraData.homepageHeader.scndheaderitem5 }}
+        </a>
+      </li>
+    </ul>
+    <ul>
+      <li>
+        <a class="astyle ad-dag" href="">
+          {{ extraData.homepageHeader.scndheaderitem6 }}
+        </a>
+      </li>
+    </ul>
+
+    <img class="burgermenu" src="/assets/burger-bar.png" alt="menu" width="28" height="30">
+  </nav>
+</header>
+<main>
 
 
 {% comment %} Artikel {% endcomment %}

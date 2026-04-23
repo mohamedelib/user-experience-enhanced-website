@@ -391,6 +391,25 @@ app.get("/nieuws/:title", async function (request, response) {
 
   const extraData = {
     homepageHeader: {
+      title: "Het landelijke platform voor associate degrees",
+      text: "Ad-netwerk samen om kennis te delen, samen te werken en de kwaliteit en zichtbaarheid van Associate degrees te versterken.",
+      headeritem1: "FAQ's",
+      headeritem2: "Over ons",
+      headeritem3: "Contact",
+      scndheaderitem1: "Home",
+      scndheaderitem2: "Over Ad's",
+      scndheaderitem3: "Publicaties",
+      scndheaderitem4: "Talentaward",
+      scndheaderitem5: "Nieuws",
+      scndheaderitem6: "Kom naar Ad-dag",
+      nieuwsitem1: "Landelijke Ad Dag",
+      nieuwsitem2: "Dit is een test in principe",
+      nieuwsitem3: "Workshop Ad'ers zijn doeners!",
+      nieuwsdiscription1:
+        "Dit schooljaar vindt de landelijke Ad-dag plaats op vrijdag 17 april 2026!",
+      nieuwsdiscription2: "Hopelijk werkt dit?",
+      nieuwsdiscription3:
+        "De Ad-dag is een iniatief vanuit het Overlegplatform Associatedegrees. De vijfde...",
       buttons: [
         {
           url: "#bla",
