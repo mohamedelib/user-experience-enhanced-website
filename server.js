@@ -489,6 +489,28 @@ app.post(
     );
   },
 );
+
+app.post("/nieuws/:uuid/comment", async function (request, response) {
+  const uuid = request.params.uuid;
+  const { name, comment } = request.body;
+
+  await fetch(
+    "https://fdnd-agency.directus.app/items/adconnect_news_comments",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: name,
+        comment: comment,
+        news: uuid,
+      }),
+    },
+  );
+
+  response.redirect(`/nieuws/${uuid}`);
+});
 // Stel het poortnummer in waar Express op moet gaan luisteren
 // Lokaal is dit poort 8000, als dit ergens gehost wordt, is het waarschijnlijk poort 80
 app.set("port", process.env.PORT || 8000);
