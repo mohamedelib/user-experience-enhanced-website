@@ -369,6 +369,50 @@ app.get("/Publicaties", async function (request, response) {
   });
 });
 
+app.get("/nieuws/:title", async function (request, response) {
+  const uuid = request.params.title;
+  console.log("uuid:", uuid);
+  console.log(
+    "comments url:",
+    `https://fdnd-agency.directus.app/items/adconnect_news_comments?filter[news][_eq]=${uuid}`,
+  );
+  const artCommentsResponse = await fetch(
+    `https://fdnd-agency.directus.app/items/adconnect_news_comments?filter[news][_eq]=${uuid}`,
+  );
+  const artCommentsData = await artCommentsResponse.json();
+
+  const newsResponse = await fetch(
+    `https://fdnd-agency.directus.app/items/adconnect_news/${uuid}`,
+  );
+  const newsData = await newsResponse.json();
+
+  // Render index.liquid uit de Views map
+  // Geef hier eventueel data aan mee
+
+  const extraData = {
+    homepageHeader: {
+      buttons: [
+        {
+          url: "#bla",
+          text: "Meer over Ad's",
+        },
+        {
+          url: "#bla",
+          text: "Kom naar de AD-dag >",
+        },
+      ],
+    },
+  };
+
+  response.render("artikel.liquid", {
+    title: "Home",
+    extraData: extraData,
+    documents: documentDataJSON.data,
+    artcomment: artCommentsData.data,
+    news: newsData.data,
+  });
+});
+
 // Maak een POST route voor de index; hiermee kun je bijvoorbeeld formulieren afvangen
 // Hier doen we nu nog niets mee, maar je kunt er mee spelen als je wilt
 app.post("/", async function (request, response) {
