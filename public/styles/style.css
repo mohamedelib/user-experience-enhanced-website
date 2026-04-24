@@ -224,7 +224,7 @@ header a {
 }
 
 .banner {
-  padding: 20px;
+  padding: 25px;
   background-color: var(--color-brand-subtle);
   @media (min-width: 780px) {
     display: grid;
@@ -234,7 +234,7 @@ header a {
 }
 .banner img {
   border-radius: 1em 1em 0 0;
-  height: 20em;
+  height: 21em;
   width: 100%;
   object-fit: cover;
 }
@@ -355,6 +355,11 @@ header a {
   margin: 0 auto;
   max-width: 700px;
 }
+
+.tekstt h2,
+.tekstt p {
+  color: var(--color-text2);
+}
 .padd {
   display: flex;
   flex-direction: column;
@@ -419,10 +424,12 @@ header a {
     grid-column: 2;
   }
 }
-.profile img {
+.profile picture {
+  display: flex;
   border-radius: 10px;
   outline: 2px solid white;
   grid-row: 4 / 5;
+
   @media (min-width: 780px) {
     grid-column: 1;
     align-self: center;
@@ -455,7 +462,7 @@ dd {
   font-size: 20px;
 }
 
-.profile img,
+.profile picture,
 .profile h1,
 .profile h2 {
   margin: 0 auto;
@@ -908,4 +915,9 @@ button[data-loading]::after {
   to {
     transform: rotate(360deg);
   }
+}
+
+.row1 p:nth-of-type(2) {
+  font-weight: bold;
+  font-style: italic;
 }
