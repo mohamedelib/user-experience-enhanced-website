@@ -31,13 +31,15 @@
     
         </div>
     <p> {{ comment.comment }}</p>
- 
+ <form action="/nieuws/{{ news.uuid }}/comment/{{ comment.id }}/delete" method="POST">
+      <button class="delete"type="submit">🗑️</button>
+    </form>
     </div>
    {% endfor %}
 
 </div>
 {% comment %} post form {% endcomment %}
-<form class="comment-form" action="/nieuws/{{ news.uuid }}/comment" method="POST">
+<form class="comment-form" id="comment-form" action="/nieuws/{{ news.uuid }}/comment" method="POST">
 {% if success %}
   {% render 'partials/succes.liquid', message: "Reactie geplaatst!" %}
 {% endif %}
@@ -45,8 +47,8 @@
       {% render 'partials/error-banner.liquid', message: "Vul alle velden in." %}
     {% endif %}
   <label>Comment
-      <textarea placeholder="Schrijf jouw reactie..."
-        name="comment"
+      <textarea  placeholder="Schrijf jouw reactie..."
+        name="message"
         {% if submitted and form.message == blank %}class="field-error"{% endif %}
       >{{ form.message }}</textarea>
     </label>
@@ -57,8 +59,8 @@
     {% endif %}
 
   <label>Naam
-      <input type="text" placeholder="Jouw naam"
-        name="name"
+      <input  type="text" placeholder="Jouw naam"
+        name="afzender"
         {% if submitted and form.afzender == blank %}class="field-error"{% endif %}
         value="{{ form.afzender }}">
     </label>
@@ -69,6 +71,14 @@
     {% endif %}
   <button  type="submit">
     Laat je reactie achter</button>
+    <script>
+  const firstError = document.querySelector('.field-error');
+  if (firstError) {
+    firstError.scrollIntoView({ behavior: 'smooth' });
+  }
+</script>
+
+
 </form>
 </main>
 

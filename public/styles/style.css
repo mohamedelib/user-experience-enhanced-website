@@ -814,6 +814,15 @@ button[type="submit"] {
   border-radius: 50px;
   cursor: pointer;
   margin-top: 8px;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+button[type="submit"]:focus-visible {
+  outline: 2px solid var(--color-brand-active);
+  outline-offset: 3px;
 }
 
 .comments-list {

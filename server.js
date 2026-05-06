@@ -511,25 +511,71 @@ app.post(
 
 app.post("/nieuws/:uuid/comment", async function (request, response) {
   const uuid = request.params.uuid;
-  const { name, comment } = request.body;
+  const { message, afzender } = request.body;
 
+  // Validatie
+  const errors = [];
+  if (!message) errors.push("message");
+  if (!afzender) errors.push("afzender");
+
+  if (errors.length > 0) {
+    const artCommentsResponse = await fetch(
+      `https://fdnd-agency.directus.app/items/adconnect_news_comments?filter[news][_eq]=${uuid}`,
+    );
+    const artCommentsData = await artCommentsResponse.json();
+
+    const newsResponse = await fetch(
+      `https://fdnd-agency.directus.app/items/adconnect_news/${uuid}`,
+    );
+    const newsData = await newsResponse.json();
+
+    return response.render("artikel.liquid", {
+      title: "Home",
+      documents: documentDataJSON.data,
+      artcomment: artCommentsData.data,
+      news: newsData.data,
+      submitted: true,
+      errors: errors,
+      form: {
+        message: message || "",
+        afzender: afzender || "",
+      },
+    });
+  }
+
+  // Alles ingevuld → stuur naar API
   await fetch(
     "https://fdnd-agency.directus.app/items/adconnect_news_comments",
     {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        name: name,
-        comment: comment,
+        name: afzender,
+        comment: message,
         news: uuid,
       }),
     },
   );
 
-  response.redirect(`/nieuws/${uuid}`);
+  response.redirect(`/nieuws/${uuid}?success=true#comment-form`);
 });
+
+app.post(
+  "/nieuws/:uuid/comment/:id/delete",
+  async function (request, response) {
+    const uuid = request.params.uuid;
+    const id = request.params.id;
+
+    await fetch(
+      `https://fdnd-agency.directus.app/items/adconnect_news_comments/${id}`,
+      {
+        method: "DELETE",
+      },
+    );
+
+    response.redirect(`/nieuws/${uuid}#comment-form`);
+  },
+);
 // Stel het poortnummer in waar Express op moet gaan luisteren
 // Lokaal is dit poort 8000, als dit ergens gehost wordt, is het waarschijnlijk poort 80
 app.set("port", process.env.PORT || 8000);
