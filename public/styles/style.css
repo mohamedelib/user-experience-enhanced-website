@@ -672,10 +672,15 @@ a.ad-dag.astyle {
 }
 
 .uitreiking {
-  color: var(--color-text2);
   background-color: var(--color-brand-active);
   outline: none;
   margin-bottom: 30px;
+}
+
+.uitreiking,
+.uitreiking p,
+.uitreiking h3 {
+  color: var(--color-text2);
 }
 .box p,
 .box h3 {
@@ -928,11 +933,17 @@ button[data-loading]::after {
   }
 }
 
-.row1 p:nth-of-type(2) {
+.row1 p {
   font-weight: bold;
   font-style: italic;
 }
 
+button.delete {
+  font-size: 30px;
+  background: none;
+  border: none;
+  width: 100%;
+}
 /* FAQ */
 
 .FAQ {
