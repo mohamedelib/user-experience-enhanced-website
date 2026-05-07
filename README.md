@@ -116,3 +116,79 @@ CSS regelt de layout met grid en media queries en de styleguide.
 JavaScript haalt data op uit een API en toont deze op de pagina.
 
 ### HTML
+Reacties worden opgehaald met een for-loop in Liquid. Bij een leeg veld krijgt het element de class `field-error`. Afbeeldingen gebruiken `<picture>` met avif en webp, `loading="lazy"` en `fetchpriority="high"` op de belangrijkste afbeelding.
+
+### CSS
+Custom properties in `:root` voor kleuren, spacing en typografie. Dark mode via `@media (prefers-color-scheme: dark)`. Velden met fouten krijgen de class `field-error` met rode border en lichtroze achtergrond.
+
+### Server JavaScript
+Express met LiquidJS als template. De POST route valideert server-side of alle velden zijn ingevuld. Bij fouten wordt de pagina opnieuw gerenderd met `submitted: true`. Bij succes volgt een redirect met `?success=true` en een fragment zodat de browser direct naar de berichten scrollt.
+
+## GEBRUIKERSTEST
+
+In [issue 7](https://github.com/mohamedelib/the-web-is-for-everyone-interactive-functionality/issues/7) beschrijf ik de user story voor het plaatsen van een comment bij een Talent Award kandidaat.
+
+Wat ik testte
+
+Ik wilde weten of gebruikers zonder problemen een reactie kunnen achterlaten bij een kandidaat. Ik focuste op het comment formulier en de feedback na het versturen.
+
+Probleem
+
+Het formulier staat helemaal onderaan de pagina. Gebruikers moeten eerst langs alle berichten scrollen voordat ze zelf iets kunnen typen. Dat is onhandig.
+
+Oplossing
+
+Ik heb de comments sectie en de form gescheiden van elkaar. Hierdoor kun je scrollen in de comment lijst en staat de form altijd onderaan.
+
+Waarom dit werkt
+
+De gebruiker ziet gelijk dat hij een comment kan achterlaten zonder dat hij eerst door de berichten moest scrollen.
+
+Feedback na actie
+
+Na het plaatsen van een reactie verschijnt er een succesbericht. De reactie is direct zichtbaar tussen de andere berichten. Dit bevestigt dat de actie is gelukt.
+
+## WCAG AUDIT
+
+Voor dit project heb ik een [WCAG audit](https://github.com/mohamedelib/the-web-is-for-everyone-interactive-functionality/issues/12) uitgevoerd om de toegankelijkheid te controleren. Ik heb gekeken naar contrast, toetsenbordbediening, structuur. De uitkomst en verbeterpunten heb ik vastgelegd.
+
+De volledige WCAG audit is [hier](https://github.com/mohamedelib/the-web-is-for-everyone-interactive-functionality/issues/12) te vinden
+
+
+
+ ## Kenmerken
+
+### HTML
+Reacties worden opgehaald met een for-loop in Liquid. Bij een leeg veld krijgt het element de class `field-error`. Afbeeldingen gebruiken `<picture>` met avif en webp, `loading="lazy"` en `fetchpriority="high"` op de belangrijkste afbeelding.
+
+### CSS
+Custom properties in `:root` voor kleuren, spacing en typografie. Dark mode via `@media (prefers-color-scheme: dark)`. Velden met fouten krijgen de class `field-error` met rode border en lichtroze achtergrond.
+
+### Server JavaScript
+Express met LiquidJS als template. De POST route valideert server-side of alle velden zijn ingevuld. Bij fouten wordt de pagina opnieuw gerenderd met `submitted: true`. Bij succes volgt een redirect met `?success=true` en een fragment zodat de browser direct naar de berichten scrollt.
+
+
+## Bronnen
+
+HTML:
+- [form](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)
+- [fieldset](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset)
+- [label](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label)
+- [textarea](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea)
+- [input](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input)
+- [picture element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture)
+- [loading lazy](https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading)
+
+CSS:
+- [Custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)
+- [clamp()](https://developer.mozilla.org/en-US/docs/Web/CSS/clamp)
+- [CSS grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout)
+- [Media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries)
+- [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme)
+
+JavaScript/Server:
+- [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
+- [Destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
+- [Array.find()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find)
+- [encodeURIComponent()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent)
+- [Cumulative Layout Shift](https://web.dev/articles/cls)2 /
