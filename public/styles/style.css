@@ -330,7 +330,6 @@ header a {
   padding: 2em calc((100% - 600px) / 2);
   @media (min-width: 780px) {
     margin: 0 auto;
-    max-width: 600px;
     margin-top: 2em;
   }
 
