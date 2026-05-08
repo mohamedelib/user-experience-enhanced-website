@@ -216,6 +216,9 @@ header a {
   gap: 1em;
 }
 
+.margin-class {
+  margin-bottom: 30px;
+}
 .overons {
   background-color: var(--color-bg-page);
 }
