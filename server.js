@@ -429,6 +429,7 @@ app.get("/nieuws/:title", async function (request, response) {
     documents: documentDataJSON.data,
     artcomment: artCommentsData.data,
     news: newsData.data,
+    success: request.query.success === "true",
   });
 });
 
