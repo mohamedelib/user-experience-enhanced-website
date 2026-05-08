@@ -322,6 +322,12 @@ header a {
   }
 }
 .information {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-brand-subtle);
+  gap: 1em;
+  margin: 0 auto;
+  padding: 2em calc((100% - 600px) / 2);
   @media (min-width: 780px) {
     margin: 0 auto;
     max-width: 600px;
@@ -333,6 +339,10 @@ header a {
     color: var(--color-text2);
   }
 }
+
+.information img {
+  width: 80px;
+}
 .info-cards {
   background-color: var(--color-brand-active);
   width: 100%;
@@ -340,7 +350,6 @@ header a {
   justify-content: center;
   text-align: center;
   padding: 30px 0;
-  margin: 50px calc(var(--space-md) * -1) 0 calc(var(--space-md) * -1);
 }
 
 .mini-cards {
