@@ -1,5 +1,5 @@
 # AdConnect website
-[Live website](https://the-web-is-for-everyone-interactive-gy8v.onrender.com/)
+[Live website](https://user-experience-enhanced-website-msxt.onrender.com//)
 
 ## Korte uitleg van de opdracht en oplossing
 Voor dit project heb ik een deel van de AdConnect website opnieuw ontworpen en uitgebreid. De opdracht was om een duidelijkere en beter werkende website te maken. Ik heb een nieuwe home pagina gemaakt, de Talent Award pagina verbeterd en een studenten pagina ontwikkeld voor genomineerde studenten.
@@ -16,10 +16,9 @@ De website is gebouwd met de Mobile First methode.
 
 Op kleine schermen staat de inhoud onder elkaar.
 Op grotere schermen verschijnen meerdere kolommen.
+<img width="799" height="421" alt="image" src="https://github.com/user-attachments/assets/9779b6ff-c38c-487c-adf3-a5a35347815c" />
 
-<img width="1153" height="413" alt="image" src="https://github.com/user-attachments/assets/58308f17-8a69-4fed-86e4-7e5dc78a0c3b" />
-<img width="1067" height="425" alt="image" src="https://github.com/user-attachments/assets/92c61c4e-b312-4833-9cac-509c8a5b79a2" />
-<img width="1135" height="431" alt="image" src="https://github.com/user-attachments/assets/06767217-62ce-4313-8e94-c2a5b4e353ca" />
+
 
 
 
@@ -59,10 +58,17 @@ De button met de tekst "Laat je reactie achter" laat zien dat je een comment kan
 ## Feedback
 
 Wanneer je een veld niet heb ingevuld, komt er een rode styling te voorschijn met 2 messages. De messages geven extra feedback aan de gebruiker 
-<img width="628" height="221" alt="image" src="https://github.com/user-attachments/assets/28228f1d-78a9-4208-8507-c310ee1d3c7a" />
+<img width="866" height="753" alt="image" src="https://github.com/user-attachments/assets/f95bfd6f-195a-4075-8259-52f51f1e974d" />
+
 
 Wanneer je comment gelukt is krijg je gelijk feedback. 
-<img width="674" height="513" alt="image" src="https://github.com/user-attachments/assets/6734f2d2-82f9-4827-b120-39ae791c927a" />
+<img width="865" height="672" alt="image" src="https://github.com/user-attachments/assets/0badffde-69e3-47a2-ae51-9444d9038fe1" />
+
+**Loading state**
+Wanneer een gebruiker op de submit button klikt, verandert de tekst naar "Bezig met Versturen..." en wordt de button uitgeschakeld. Dit voorkomt dat de gebruiker meerdere keren op de button klikt terwijl het formulier verstuurd wordt. De gebruiker ziet direct dat er iets gebeurt.
+<img width="858" height="629" alt="image" src="https://github.com/user-attachments/assets/77dd56f8-ced7-4b79-978e-eb075e5819f0" />
+
+
 
 ## Progressive enhancement
 De website is gebouwd in drie lagen.
@@ -77,6 +83,32 @@ Ik heb daarvoor bijvoorbeeld UI states en een darkmode toegevoegd. Dark mode wer
 Als een veld niet is ingevuld krijgt het de class field-error. Dit regelt de server.
 Dark mode en foutmeldingen zijn extra lagen die de ervaring verbeteren maar niet nodig zijn om de site te gebruiken.
 
+## Ontwerpkeuzes
+
+**Formulier validatie**
+Ik gebruik server-side én client-side validatie gecombineerd. JavaScript voegt direct een `field-error` class toe zodat de gebruiker feedback krijgt zonder pagina reload. Als JavaScript uitvalt, vangt de server de validatie op.
+
+**Button states**
+De submit button heeft een `hover` en `focus` state met een transitie van 150ms. Onder de 300ms ervaart de gebruiker dit als directe feedback.
+
+**Delete functionaliteit**
+Comments kunnen verwijderd worden via een klein formulier per comment. HTML forms ondersteunen geen DELETE method, daarom gebruik ik een POST route met `/delete` in de URL.
+
+Fout- en succesmeldingen zitten in aparte partials zodat ik code niet hoef te herhalen.
+Na een mislukte submit blijven ingevulde waardes staan zodat de gebruiker niet opnieuw hoeft te typen.
+
+## Performance
+
+### Performant images
+[Issue #15](https://github.com/mohamedelib/user-experience-enhanced-website/issues/15)
+
+Ik heb de afbeeldingen in mijn project geoptimaliseerd op vier punten. Afbeeldingen laadden als gewone JPEG/PNG, hadden geen lazy loading, geen prioriteit en geen resolution switching. Ik heb `<picture>` toegevoegd met avif en webp zodat de browser het kleinste formaat kiest. Met `loading="lazy"` laadt een afbeelding pas als de gebruiker ernaartoe scrollt. De belangrijkste afbeelding heeft `fetchpriority="high"` gekregen zodat die als eerste laadt.
+
+### Layout shift
+[Issue #18](https://github.com/mohamedelib/user-experience-enhanced-website/issues/18)
+
+Ik heb een Lighthouse test gedaan op de homepagina. De Cumulative Layout Shift scoorde goed, maar via de performance tab ontdekte ik een layout shift van 0.0019 op 566.7ms. Dit kwam doordat drie afbeeldingen geen `width` en `height` hadden in de HTML, waardoor de browser de ruimte niet kon reserveren voordat de afbeelding laadde. De oplossing was het toevoegen van de juiste `width` en `height` aan die afbeeldingen.
+
 ## Kenmerken
 
 HTML zorgt voor de structuur van de pagina.
@@ -84,137 +116,13 @@ CSS regelt de layout met grid en media queries en de styleguide.
 JavaScript haalt data op uit een API en toont deze op de pagina.
 
 ### HTML
-```
-<section class="nominatiebericht">
-<h2 id="berichtenn">Berichten</h2>
-<div class="comments-list">
-    {% for comment in comments %}
-      <div class="commentcard">
-        <div class="row1">
-          <p>{{ comment.name }}</p>
-          <p>{{ comment.date_created }}</p>
-        </div>
-        <p>{{ comment.comment }}</p>
-        <p>Nominatie #{{ comment.nomination }}</p>
-      </div>
-    {% endfor %}
-</div>
+Reacties worden opgehaald met een for-loop in Liquid. Bij een leeg veld krijgt het element de class `field-error`. Afbeeldingen gebruiken `<picture>` met avif en webp, `loading="lazy"` en `fetchpriority="high"` op de belangrijkste afbeelding.
 
-<form class="comment-form" action="/Talentaward/student/{{ studentTitle }}/comment" method="POST">
-  <label>Comment
-    <textarea placeholder="Schrijf jouw reactie..." name="message">{{ form.message }}</textarea>
-  </label>
-  <label>Naam
-    <input type="text" placeholder="Jouw naam" name="afzender" value="{{ form.afzender }}">
-  </label>
-  <button type="submit">Laat je reactie achter</button>
-</form>
-```
-De pagina gebruikt semantische HTML.
-Twee headers bevatten de navigatie en het logo.
-Main bevat het studentprofiel, de video, het verhaal en de reacties.
-Reacties worden opgehaald met een for-loop in Liquid en getoond in de comments-list.
-Het formulier verstuurt data via method= POST naar de database.
-Bij een leeg veld krijgt het element de class field-error zodat het opvalt.
-Een succesbericht wordt getoond via een andere partialview als de reactie geplaatst is.
+### CSS
+Custom properties in `:root` voor kleuren, spacing en typografie. Dark mode via `@media (prefers-color-scheme: dark)`. Velden met fouten krijgen de class `field-error` met rode border en lichtroze achtergrond.
 
-## CSS
-```
-:root {
-  --color-brand-active: hsl(213, 100%, 28%);
-  --color-brand-subtle: hsl(213, 100%, 88%);
-  --color-text: hsl(213, 21%, 9%);
-  --color-text2: white;
-  --color-bg-page: hsl(0, 0%, 98%);
-  --color-bg-surface: hsl(0, 0%, 100%);
-
-  --space-md: clamp(16px, 1.5vw, 20px);
-  --h1-size: clamp(1.875rem, 1.602rem + 1.1494vw, 2.5rem);
-  --font-body: "Archivo", sans-serif;
-  --font-heading: "ClashDisplay", sans-serif;
-}
-
-.nominatiebericht {
-  max-width: 800px;
-  width: 100%;
-  margin: 0 auto;
-  background: var(--color-bg-surface);
-  border: 2px solid var(--color-brand-active);
-  border-radius: 13px;
-  padding: 16px;
-}
-
-textarea.field-error,
-input[type="text"].field-error {
-  border: 2px solid red;
-  background: #fde8e8;
-}
-```
-
-De stylesheet gebruikt custom properties in :root voor kleuren, spacing en typografie.
-Dit maakt het makkelijk om waardes op een plek aan te passen.
-De layout werkt mobile-first. Media queries voegen pas grid en extra kolommen toe vanaf grotere schermen.
-Dark mode wordt geregeld met ```@media (prefers-color-scheme: dark)``` door custom properties te overschrijven in ```:root```.
-Formuliervelden met validatiefouten krijgen de class ```field-error```. Die class geeft een rode border en lichtroze achtergrond zodat de gebruiker direct ziet wat er mis is.
-Succes- en foutmeldingen hebben eigen classes met groene en rode kleuren voor duidelijke visuele feedback.
-
-## Server javacsript
-```
-app.post(
-  "/Talentaward/student/:title/comment",
-  async function (request, response) {
-    const studentTitle = decodeURIComponent(request.params.title);
-    const { message, afzender } = request.body;
-
-    const student = awardDataJSON.data.find((s) => s.title === studentTitle);
-
-    const errors = [];
-    if (!message) errors.push("message");
-    if (!afzender) errors.push("afzender");
-
-    if (errors.length > 0) {
-      return response.render("student.liquid", {
-        submitted: true,
-        errors: errors,
-        form: { message: message || "", afzender: afzender || "" },
-      });
-    }
-
-    await fetch(
-      "https://fdnd-agency.directus.app/items/adconnect_nominations_comments",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          comment: message,
-          name: afzender,
-          nomination: student.id,
-        }),
-      },
-    );
-
-    response.redirect(
-      `/Talentaward/student/${encodeURIComponent(studentTitle)}?success=true#berichtenn`,
-    );
-  },
-);
-```
-De server draait op Express met LiquidJS als template.
-Data wordt bij het opstarten opgehaald van de Directus API en opgeslagen in variabelen.
-Het POST endpoint(/Talentaward/student/:title/comment) valideert server-side of alle velden zijn ingevuld.
-Bij een succesvolle submit stuurt de server de data via fetch met POST naar de Directus API.
-Na het opslaan doet de server een redirect met een query parameter success=true en een fragment #berichtenn. Daardoor scrollt de browser na het herladen direct naar de berichten sectie.
-
-## Videofragment interactie:
-
-https://github.com/user-attachments/assets/865db40a-854e-478b-aa00-e6bdb88a2d87
-
-
-Ontwerpkeuzes
-Fout- en succesmeldingen zitten in aparte partials zodat ik code niet hoef te herhalen.
-Na een mislukte submit blijven ingevulde waardes staan zodat de gebruiker niet opnieuw hoeft te typen.
-
-
+### Server JavaScript
+Express met LiquidJS als template. De POST route valideert server-side of alle velden zijn ingevuld. Bij fouten wordt de pagina opnieuw gerenderd met `submitted: true`. Bij succes volgt een redirect met `?success=true` en een fragment zodat de browser direct naar de berichten scrollt.
 
 ## GEBRUIKERSTEST
 
@@ -246,7 +154,19 @@ Voor dit project heb ik een [WCAG audit](https://github.com/mohamedelib/the-web-
 
 De volledige WCAG audit is [hier](https://github.com/mohamedelib/the-web-is-for-everyone-interactive-functionality/issues/12) te vinden
 
-## Bronnen
+
+
+ ## Kenmerken
+
+### HTML
+Reacties worden opgehaald met een for-loop in Liquid. Bij een leeg veld krijgt het element de class `field-error`. Afbeeldingen gebruiken `<picture>` met avif en webp, `loading="lazy"` en `fetchpriority="high"` op de belangrijkste afbeelding.
+
+### CSS
+Custom properties in `:root` voor kleuren, spacing en typografie. Dark mode via `@media (prefers-color-scheme: dark)`. Velden met fouten krijgen de class `field-error` met rode border en lichtroze achtergrond.
+
+### Server JavaScript
+Express met LiquidJS als template. De POST route valideert server-side of alle velden zijn ingevuld. Bij fouten wordt de pagina opnieuw gerenderd met `submitted: true`. Bij succes volgt een redirect met `?success=true` en een fragment zodat de browser direct naar de berichten scrollt.
+
 
 ## Bronnen
 
@@ -256,6 +176,8 @@ HTML:
 - [label](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label)
 - [textarea](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea)
 - [input](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input)
+- [picture element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture)
+- [loading lazy](https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading)
 
 CSS:
 - [Custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)
@@ -269,4 +191,4 @@ JavaScript/Server:
 - [Destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
 - [Array.find()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find)
 - [encodeURIComponent()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent)
-
+- [Cumulative Layout Shift](https://web.dev/articles/cls)2 /
