@@ -466,6 +466,9 @@ dt {
   font-size: 20px;
 }
 
+.margin {
+  margin: 0 auto;
+}
 dd {
   grid-row: 2;
   font-size: 20px;
